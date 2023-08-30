@@ -6,15 +6,27 @@ def create_new_sheet(wb):
     new_sheet_name = "created_sheet_" + datetime.now().strftime("%Y%m%d_%H%M%S")
     ws = wb.create_sheet(new_sheet_name)
     
+    #iteration for loop to copy data on the selected data range
     for i in range(1, sheet1.max_row + 1):
         for j in range(1, sheet1.max_column +1):
-            ws.cell(row=i, column=j).value = sheet1.cell(row=i, column=j).value
-            
+            ws.cell(row=i, column=j).value = sheet1.cell(row=i, column=j).value 
+    
+    #iteration for loop to clear data of selected cell range
+    # Clearing the data in specified cell ranges
+    for row in ws.iter_rows(min_row=2, max_row=5, min_col=3, max_col=3):
+        for cell in row:
+            cell.value = None
+
+    for row in ws.iter_rows(min_row=2, max_row=5, min_col=7, max_col=7):
+        for cell in row:
+            cell.value = None
+
+
     wb.save("auto.xlsx")
 
 
-target_time = time(13, 11)  # Set the target time to 09:40
-wb = load_workbook('auto.xlsx')
+target_time = time(13, 11)  # Set the target time to anytime
+wb = load_workbook('auto.xlsx') #loading a workbook
 sheet1 = wb['sheet1']
 
 while True:
