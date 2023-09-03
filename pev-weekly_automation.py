@@ -6,10 +6,15 @@ def create_new_sheet(wb):
     new_sheet_name = "created_sheet_" + datetime.now().strftime("%Y%m%d_%H%M%S")
     ws = wb.create_sheet(new_sheet_name)
     
-    #iteration for loop to copy data on the selected data range
-    for i in range(1, sheet1.max_row + 1):
-        for j in range(1, sheet1.max_column +1):
-            ws.cell(row=i, column=j).value = sheet1.cell(row=i, column=j).value 
+    #get the previously added sheet (assuming it's the last sheet)
+    previous_sheet_name = wb.sheetnames[-2] if len(wb.sheetnames) > 1 else None
+    previous_sheet = wb[previous_sheet_name]
+
+    if previous_sheet:
+        #copy data from the previous sheet to the new sheet
+        for i in range(1, previous_sheet.max_column +1):
+            for j in range(1, previous_sheet.max_column +1):
+                ws.cell(row = i, column = j).value = previous_sheet.cell(row=i , column=j).value 
     
     # Clearing the data in specified cell ranges
     for row in ws.iter_rows(min_row=2, max_row=5, min_col=3, max_col=3):
@@ -26,7 +31,7 @@ def create_new_sheet(wb):
     wb.save("auto.xlsx")
 
 
-target_time = time(13, 11)  # Set the target time to anytime
+target_time = time(11, 11)  # Set the target time to anytime
 wb = load_workbook('auto.xlsx') #loading a workbook
 sheet1 = wb['sheet1']
 
