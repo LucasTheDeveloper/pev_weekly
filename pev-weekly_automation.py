@@ -50,15 +50,15 @@ def create_new_sheet(wb):
         for cell in row:
             cell.value = None
 
-    for row in ws.iter_rows(min_row=5, max_row=15, min_col=21, max_col=21):
-        for cell in row:
-            cell.value = None
-
-    for row in ws.iter_rows(min_row=5, max_row=15, min_col=24, max_col=24):
+    for row in ws.iter_rows(min_row=5, max_row=15, min_col=22, max_col=22):
         for cell in row:
             cell.value = None
     
-    for row in ws.iter_rows(min_row=5, max_row=15, min_col=26, max_col=26):
+    for row in ws.iter_rows(min_row=5, max_row=15, min_col=25, max_col=25):
+        for cell in row:
+            cell.value = None
+    
+    for row in ws.iter_rows(min_row=5, max_row=15, min_col=28, max_col=28):
         for cell in row:
             cell.value = None
 
