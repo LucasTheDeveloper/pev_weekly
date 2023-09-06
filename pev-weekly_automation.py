@@ -38,7 +38,6 @@ def create_new_sheet(wb):
         for cell in row:
             cell.value = None
 
-    
     for row in ws.iter_rows(min_row=5, max_row=15, min_col=13, max_col=13):
         for cell in row:
             cell.value = None
