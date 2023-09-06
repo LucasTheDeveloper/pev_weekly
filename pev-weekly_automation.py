@@ -1,5 +1,6 @@
 from openpyxl import load_workbook
 from datetime import datetime, time, timedelta
+from openpyxl.styles import Font
 import time as t
 
 def create_new_sheet(wb):
@@ -11,11 +12,30 @@ def create_new_sheet(wb):
     previous_sheet = wb[previous_sheet_name]
 
     if previous_sheet:
-        #copy data from the previous sheet to the new sheet
-        for i in range(1, previous_sheet.max_column +1):
-            for j in range(1, previous_sheet.max_column +1):
-                ws.cell(row = i, column = j).value = previous_sheet.cell(row=i , column=j).value 
+    # Copy data from the previous sheet to the new sheet, including style
+        for row in previous_sheet.iter_rows(min_row=1, max_row=previous_sheet.max_row, min_col=1, max_col=previous_sheet.max_column):
+         for cell in row:
+             new_cell = ws[cell.coordinate]
+             new_cell.value = cell.value
+
+            # Copy cell formatting
+             new_cell.font = Font(
+                name=cell.font.name,
+                size=cell.font.size,
+                bold=cell.font.bold,
+                italic=cell.font.italic,
+                color=cell.font.color,
+                underline=cell.font.underline,
+                strikethrough=cell.font.strikethrough,
+                vertAlign=cell.font.vertAlign,
+            )
+
+ 
     
+    #hide column D
+    ws.column_dimensions['D'].hidden = True
+    ws.column_dimensions['I'].hidden = True
+    ws.column_dimensions['N'].hidden = True
     # Clearing the data in specified cell ranges
     for row in ws.iter_rows(min_row=5, max_row=15, min_col=3, max_col=3):
         for cell in row:
