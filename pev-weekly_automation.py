@@ -1,25 +1,16 @@
 from openpyxl import load_workbook
+import xlsxwriter
+from openpyxl.drawing.image import Image
 from datetime import datetime, time, timedelta
 from openpyxl.styles import Font, PatternFill, Alignment
+from openpyxl.styles import Border
 import time as t
 
-def copy_chart(source_sheet, target_sheet):
-    #Iterate throgh drawing objects including charts on the source sheet
-    for drawing in source_sheet._images:
-        if drawing.drawing_type == "Chart 2":
-        #create new chart on the target sheet 
-            new_drawing = drawing.copy()
-
-        #set the new chart anchor on the target sheet
-            new_drawing.anchor = new_drawing.anchor.copy(target=target_sheet)
-
-        #add the new chart to the target sheeet 
-            target_sheet.add_image(new_drawing)
 
 def create_new_sheet(wb):
     new_sheet_name = "created_sheet_" + datetime.now().strftime("%Y%m%d_%H%M%S")
     ws = wb.create_sheet(new_sheet_name)
-    
+    ws.sheet_view.zoomScale = 70
     #get the previously added sheet (assuming it's the last sheet)
     previous_sheet_name = wb.sheetnames[-2] if len(wb.sheetnames) > 1 else None
     previous_sheet = wb[previous_sheet_name]
@@ -47,16 +38,18 @@ def create_new_sheet(wb):
 
              if cell.fill is not None:
                     new_cell.fill = PatternFill(start_color=cell.fill.start_color, end_color=cell.fill.end_color, fill_type=cell.fill.fill_type)
-             
+             # Copy cell borders
+        # Copy cell borders
+             if cell.border is not None:
+                 new_cell.border = Border(
+                     left=cell.border.left,
+                     right=cell.border.right,
+                     top=cell.border.top,
+                     bottom=cell.border.bottom,
+                    )
              ws.row_dimensions[cell.row].height = previous_sheet.row_dimensions[cell.row].height   
              ws.column_dimensions[cell.column_letter].width = previous_sheet.column_dimensions[cell.column_letter].width
-             
-    
-    #copy chart from previous sheet
-        copy_chart(previous_sheet,ws)
-
-
-         
+              
     #hide column D, I and N
     ws.column_dimensions['D'].hidden = True
     ws.column_dimensions['I'].hidden = True
