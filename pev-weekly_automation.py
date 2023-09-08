@@ -4,7 +4,10 @@ from openpyxl.drawing.image import Image
 from datetime import datetime, time, timedelta
 from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.styles import Border
+import tabula
+import pandas as pd
 import time as t
+
 
 
 def create_new_sheet(wb):
@@ -49,7 +52,8 @@ def create_new_sheet(wb):
                     )
              ws.row_dimensions[cell.row].height = previous_sheet.row_dimensions[cell.row].height   
              ws.column_dimensions[cell.column_letter].width = previous_sheet.column_dimensions[cell.column_letter].width
-              
+
+
     #hide column D, I and N
     ws.column_dimensions['D'].hidden = True
     ws.column_dimensions['I'].hidden = True
@@ -121,7 +125,25 @@ def create_new_sheet(wb):
             cell.value = None
 
 
+
+
     wb.save("PeV Weekly Summary Report 2023.xlsx")
+
+#this section we are converting pdf to excel(extended program)
+#the data will be stored on auto.xlsx worksheet
+pdf_file = "sample.pdf"
+output_excel_file = "auto.xlsx"
+
+#Read PDF and convert to excel
+tables =tabula.read_pdf(pdf_file, pages="all", multiple_tables=True)
+
+#combine all tables into a single DataFrame (if multiple tables are present)
+df = pd.concat(tables, ignore_index=True)
+
+#save the DataFrame to Excel
+df.to_excel(output_excel_file,index=False)
+
+print(f"PDF '{pdf_file}' converted to Excel '{output_excel_file}' successfully")
 
 
 target_time = time(8,1)  # Set the target time to anytime
