@@ -123,6 +123,16 @@ def create_new_sheet(wb):
     for row in ws.iter_rows(min_row=5, max_row=15, min_col=2, max_col=2):
         for cell in row:
             cell.value = None
+    #copy data from auto.xlsx to the current sheet
+    # Open the auto.xlsx file and get the value from cell D62
+    auto_wb = load_workbook('auto.xlsx')
+    auto_sheet = auto_wb.active  # Assuming the data is in the active sheet of auto.xlsx
+    auto_value = auto_sheet['D62'].value
+
+    # Paste the data from cell D62 into cell B5 in the new sheet
+    ws['B5'].value = auto_value
+    ws['B5'].alignment = Alignment(horizontal='right') #align data to the right
+    auto_wb.close()  # Close the auto.xlsx workbook
 
 
 
