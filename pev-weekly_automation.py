@@ -1,5 +1,6 @@
 from openpyxl import load_workbook
 import xlsxwriter
+import re
 from openpyxl.drawing.image import Image
 from datetime import datetime, time, timedelta
 from openpyxl.styles import Font, PatternFill, Alignment
@@ -127,11 +128,25 @@ def create_new_sheet(wb):
     # Open the auto.xlsx file and get the value from cell D62
     auto_wb = load_workbook('auto.xlsx')
     auto_sheet = auto_wb.active  # Assuming the data is in the active sheet of auto.xlsx
-    auto_value = auto_sheet['D62'].value
+    auto_value_D62 = auto_sheet['D62'].value
+    auto_value_A25 = auto_sheet['A25'].value
+    integer_part_A25 = int(re.search(r'\d+', auto_value_A25).group()) #filter the invoice of hartenbros so it copies only the int value on cell A25
+    auto_value_B5 = auto_sheet['B5'].value
+    auto_value_D35 = auto_sheet['D35'].value
+    auto_value_D34 = auto_sheet['D34'].value
 
     # Paste the data from cell D62 into cell B5 in the new sheet
-    ws['B5'].value = auto_value
+    ws['B5'].value = auto_value_D62
     ws['B5'].alignment = Alignment(horizontal='right') #align data to the right
+    ws['J5'].value = integer_part_A25
+    ws['J5'].alignment = Alignment(horizontal='right')#align data to the right
+    ws['V5'].value = auto_value_B5
+    ws['V5'].alignment = Alignment(horizontal='right')
+    ws['Y5'].value = auto_value_D35
+    ws['Y5'].alignment = Alignment(horizontal='right')
+    ws['AB5'].value = auto_value_D34 
+    ws['AB5'].alignment = Alignment(horizontal='right')
+
     auto_wb.close()  # Close the auto.xlsx workbook
 
 
