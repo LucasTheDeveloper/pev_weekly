@@ -128,15 +128,41 @@ def create_new_sheet(wb):
     # Open the auto.xlsx file and get the value from cell D62
     auto_wb = load_workbook('auto.xlsx')
     auto_sheet = auto_wb.active  # Assuming the data is in the active sheet of auto.xlsx
-    auto_value_D62 = auto_sheet['D62'].value
+    #copy for Hartenbros
+    auto_value_D13 = auto_sheet['D13'].value
     auto_value_A25 = auto_sheet['A25'].value
     integer_part_A25 = int(re.search(r'\d+', auto_value_A25).group()) #filter the invoice of hartenbros so it copies only the int value on cell A25
     auto_value_B5 = auto_sheet['B5'].value
     auto_value_D35 = auto_sheet['D35'].value
     auto_value_D34 = auto_sheet['D34'].value
+   
+    #copy for Eagles Landing
+    auto_value_G63 = auto_sheet['G63'].value
+    auto_value_A74 = auto_sheet['A74'].value
+    integer_part_A74 = int(re.search(r'\d+', auto_value_A74).group()) #filter the invoice of hartenbros so it copies only the int value on cell A25
+    auto_value_G54= auto_sheet['G54'].value
+    auto_value_D84 = auto_sheet['D84'].value
+    auto_value_D83 = auto_sheet['D83'].value
+
+    #Copy for Irene
+    auto_value_D111 = auto_sheet['D111'].value
+    auto_value_A123 = auto_sheet['A123'].value
+    integer_part_A123 = int(re.search(r'\d+', auto_value_A123).group()) #filter the invoice of hartenbros so it copies only the int value on cell A25
+    auto_value_I103= auto_sheet['I103'].value
+    auto_value_D84 = auto_sheet['D84'].value
+    auto_value_D83 = auto_sheet['D83'].value
+   
+   #Copy for Irene
+    auto_value_G63 = auto_sheet['G63'].value
+    auto_value_A74 = auto_sheet['A74'].value
+    integer_part_A74 = int(re.search(r'\d+', auto_value_A74).group()) #filter the invoice of hartenbros so it copies only the int value on cell A25
+    auto_value_G54= auto_sheet['G54'].value
+    auto_value_D84 = auto_sheet['D84'].value
+    auto_value_D83 = auto_sheet['D83'].value
+
 
     # Paste the data from cell D62 into cell B5 in the new sheet
-    ws['B5'].value = auto_value_D62
+    ws['B5'].value = auto_value_D13
     ws['B5'].alignment = Alignment(horizontal='right') #align data to the right
     ws['J5'].value = integer_part_A25
     ws['J5'].alignment = Alignment(horizontal='right')#align data to the right
@@ -146,6 +172,18 @@ def create_new_sheet(wb):
     ws['Y5'].alignment = Alignment(horizontal='right')
     ws['AB5'].value = auto_value_D34 
     ws['AB5'].alignment = Alignment(horizontal='right')
+
+        # Paste the data from cell D62 into cell B5 in the new sheet
+    ws['B6'].value = auto_value_G63
+    ws['B6'].alignment = Alignment(horizontal='right') #align data to the right
+    ws['J6'].value = integer_part_A74
+    ws['J6'].alignment = Alignment(horizontal='right')#align data to the right
+    ws['V6'].value = auto_value_G54
+    ws['V6'].alignment = Alignment(horizontal='right')
+    ws['Y6'].value = auto_value_D84
+    ws['Y6'].alignment = Alignment(horizontal='right')
+    ws['AB6'].value = auto_value_D83
+    ws['AB6'].alignment = Alignment(horizontal='right')
 
     auto_wb.close()  # Close the auto.xlsx workbook
 
