@@ -149,16 +149,52 @@ def create_new_sheet(wb):
     auto_value_A123 = auto_sheet['A123'].value
     integer_part_A123 = int(re.search(r'\d+', auto_value_A123).group()) #filter the invoice of hartenbros so it copies only the int value on cell A25
     auto_value_I103= auto_sheet['I103'].value
-    auto_value_D84 = auto_sheet['D84'].value
-    auto_value_D83 = auto_sheet['D83'].value
+    auto_value_D133 = auto_sheet['D133'].value
+    auto_value_D132 = auto_sheet['D132'].value
    
-   #Copy for Irene
-    auto_value_G63 = auto_sheet['G63'].value
-    auto_value_A74 = auto_sheet['A74'].value
-    integer_part_A74 = int(re.search(r'\d+', auto_value_A74).group()) #filter the invoice of hartenbros so it copies only the int value on cell A25
-    auto_value_G54= auto_sheet['G54'].value
-    auto_value_D84 = auto_sheet['D84'].value
-    auto_value_D83 = auto_sheet['D83'].value
+   #Copy for Lyndridge Mall
+    auto_value_D160 = auto_sheet['D160'].value
+    auto_value_A172 = auto_sheet['A172'].value
+    integer_part_A172 = int(re.search(r'\d+', auto_value_A172).group()) #filter the invoice of hartenbros so it copies only the int value on cell A25
+    auto_value_D158= auto_sheet['D158'].value
+    auto_value_D182 = auto_sheet['D182'].value
+    auto_value_D181 = auto_sheet['D181'].value
+
+    #copy for Melville
+    auto_value_D209 = auto_sheet['D209'].value
+    auto_value_A221 = auto_sheet['A221'].value
+    integer_part_A221 = int(re.search(r'\d+', auto_value_A221).group()) #filter the invoice of hartenbros so it copies only the int value on cell A25
+    auto_value_M201= auto_sheet['M201'].value
+    auto_value_D231 = auto_sheet['D231'].value
+    auto_value_D230 = auto_sheet['D230'].value
+
+    #copy for Cambridge
+    auto_value_D257 = auto_sheet['D257'].value
+    auto_value_A269 = auto_sheet['A269'].value
+    integer_part_A269 = int(re.search(r'\d+', auto_value_A269).group()) #filter the invoice of hartenbros so it copies only the int value on cell A25
+    auto_value_O249= auto_sheet['O249'].value
+    auto_value_D279 = auto_sheet['D279'].value
+    auto_value_D278 = auto_sheet['D278'].value
+
+
+    #copy for Queenswood
+    auto_value_D305 = auto_sheet['D305'].value
+    auto_value_A317 = auto_sheet['A317'].value
+    integer_part_A317 = int(re.search(r'\d+', auto_value_A317).group()) #filter the invoice of hartenbros so it copies only the int value on cell A25
+    auto_value_Q297= auto_sheet['Q297'].value
+    auto_value_D327 = auto_sheet['D327'].value
+    auto_value_D326 = auto_sheet['D326'].value
+
+
+    #copy for Queenswood
+    auto_value_S355 = auto_sheet['S355'].value
+    auto_value_A366 = auto_sheet['A366'].value
+    integer_part_A366 = int(re.search(r'\d+', auto_value_A366).group()) #filter the invoice of hartenbros so it copies only the int value on cell A25
+    auto_value_A375= auto_sheet['A375'].value
+    auto_value_D376 = auto_sheet['D376'].value
+    auto_value_D375 = auto_sheet['D375'].value
+
+
 
 
     # Paste the data from cell D62 into cell B5 in the new sheet
@@ -185,6 +221,78 @@ def create_new_sheet(wb):
     ws['AB6'].value = auto_value_D83
     ws['AB6'].alignment = Alignment(horizontal='right')
 
+
+    ws['B7'].value = auto_value_D111
+    ws['B7'].alignment = Alignment(horizontal='right') #align data to the right
+    ws['J7'].value = integer_part_A123
+    ws['J7'].alignment = Alignment(horizontal='right')#align data to the right
+    ws['V7'].value = auto_value_I103
+    ws['V7'].alignment = Alignment(horizontal='right')
+    ws['Y7'].value = auto_value_D133
+    ws['Y7'].alignment = Alignment(horizontal='right')
+    ws['AB7'].value = auto_value_D132
+    ws['AB7'].alignment = Alignment(horizontal='right')
+
+
+    ws['B9'].value = auto_value_D160
+    ws['B9'].alignment = Alignment(horizontal='right') #align data to the right
+    ws['J9'].value = integer_part_A172
+    ws['J9'].alignment = Alignment(horizontal='right')#align data to the right
+    ws['V9'].value = auto_value_D158
+    ws['V9'].alignment = Alignment(horizontal='right')
+    ws['Y9'].value = auto_value_D182
+    ws['Y9'].alignment = Alignment(horizontal='right')
+    ws['AB9'].value = auto_value_D181
+    ws['AB9'].alignment = Alignment(horizontal='right')
+
+    ws['B11'].value = auto_value_D209
+    ws['B11'].alignment = Alignment(horizontal='right') #align data to the right
+    ws['J11'].value = integer_part_A221
+    ws['J11'].alignment = Alignment(horizontal='right')#align data to the right
+    ws['V11'].value = auto_value_M201
+    ws['V11'].alignment = Alignment(horizontal='right')
+    ws['Y11'].value = auto_value_D231
+    ws['Y11'].alignment = Alignment(horizontal='right')
+    ws['AB11'].value = auto_value_D230
+    ws['AB11'].alignment = Alignment(horizontal='right')
+
+    ws['B12'].value = auto_value_D257
+    ws['B12'].alignment = Alignment(horizontal='right') #align data to the right
+    ws['J12'].value = integer_part_A269
+    ws['J12'].alignment = Alignment(horizontal='right')#align data to the right
+    ws['V12'].value = auto_value_O249
+    ws['V12'].alignment = Alignment(horizontal='right')
+    ws['Y12'].value = auto_value_D279
+    ws['Y12'].alignment = Alignment(horizontal='right')
+    ws['AB12'].value = auto_value_D278
+    ws['AB12'].alignment = Alignment(horizontal='right')
+
+
+    ws['B13'].value = auto_value_D305
+    ws['B13'].alignment = Alignment(horizontal='right') #align data to the right
+    ws['J13'].value = integer_part_A317
+    ws['J13'].alignment = Alignment(horizontal='right')#align data to the right
+    ws['V13'].value = auto_value_Q297
+    ws['V13'].alignment = Alignment(horizontal='right')
+    ws['Y13'].value = auto_value_D327
+    ws['Y13'].alignment = Alignment(horizontal='right')
+    ws['AB13'].value = auto_value_D326
+    ws['AB13'].alignment = Alignment(horizontal='right')
+
+
+    ws['B14'].value = auto_value_S355
+    ws['B14'].alignment = Alignment(horizontal='right') #align data to the right
+    ws['J14'].value = integer_part_A366
+    ws['J14'].alignment = Alignment(horizontal='right')#align data to the right
+    ws['V14'].value = auto_value_A375
+    ws['V14'].alignment = Alignment(horizontal='right')
+    ws['Y14'].value = auto_value_D376
+    ws['Y14'].alignment = Alignment(horizontal='right')
+    ws['AB14'].value = auto_value_D326
+    ws['AB14'].alignment = Alignment(horizontal='right')
+
+
+
     auto_wb.close()  # Close the auto.xlsx workbook
 
 
@@ -196,6 +304,7 @@ def create_new_sheet(wb):
 #the data will be stored on auto.xlsx worksheet
 pdf_file = "sample.pdf"
 output_excel_file = "auto.xlsx"
+
 
 #Read PDF and convert to excel
 tables =tabula.read_pdf(pdf_file, pages="all", multiple_tables=True)
