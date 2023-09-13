@@ -127,7 +127,9 @@ def create_new_sheet(wb):
     #copy data from auto.xlsx to the current sheet
     # Open the auto.xlsx file and get the value from cell D62
     auto_wb = load_workbook('auto.xlsx')
-    auto_sheet = auto_wb.active  # Assuming the data is in the active sheet of auto.xlsx
+    auto_sheet = auto_wb.active  # data is in the active sheet of auto.xlsx
+    
+
     #copy for Hartenbros
     auto_value_D13 = auto_sheet['D13'].value
     auto_value_A25 = auto_sheet['A25'].value
@@ -186,7 +188,7 @@ def create_new_sheet(wb):
     auto_value_D326 = auto_sheet['D326'].value
 
 
-    #copy for Queenswood
+    #copy for waterkloof
     auto_value_S355 = auto_sheet['S355'].value
     auto_value_A366 = auto_sheet['A366'].value
     integer_part_A366 = int(re.search(r'\d+', auto_value_A366).group()) #filter the invoice of hartenbros so it copies only the int value on cell A25
