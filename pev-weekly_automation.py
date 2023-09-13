@@ -190,9 +190,18 @@ def create_new_sheet(wb):
     auto_value_S355 = auto_sheet['S355'].value
     auto_value_A366 = auto_sheet['A366'].value
     integer_part_A366 = int(re.search(r'\d+', auto_value_A366).group()) #filter the invoice of hartenbros so it copies only the int value on cell A25
-    auto_value_A375= auto_sheet['A375'].value
+    auto_value_S346= auto_sheet['S346'].value
     auto_value_D376 = auto_sheet['D376'].value
     auto_value_D375 = auto_sheet['D375'].value
+
+    #copy for Stellenbosch
+    auto_value_D402 = auto_sheet['D402'].value
+    auto_value_A414 = auto_sheet['A414'].value
+    integer_part_A414 = int(re.search(r'\d+', auto_value_A414).group()) #filter the invoice of hartenbros so it copies only the int value on cell A25
+    auto_value_U394= auto_sheet['U394'].value
+    auto_value_D424 = auto_sheet['D424'].value
+    auto_value_D423 = auto_sheet['D423'].value
+
 
 
 
@@ -284,12 +293,23 @@ def create_new_sheet(wb):
     ws['B14'].alignment = Alignment(horizontal='right') #align data to the right
     ws['J14'].value = integer_part_A366
     ws['J14'].alignment = Alignment(horizontal='right')#align data to the right
-    ws['V14'].value = auto_value_A375
+    ws['V14'].value = auto_value_S346
     ws['V14'].alignment = Alignment(horizontal='right')
     ws['Y14'].value = auto_value_D376
     ws['Y14'].alignment = Alignment(horizontal='right')
     ws['AB14'].value = auto_value_D326
     ws['AB14'].alignment = Alignment(horizontal='right')
+
+    ws['B15'].value = auto_value_D402
+    ws['B15'].alignment = Alignment(horizontal='right') #align data to the right
+    ws['J15'].value = integer_part_A414
+    ws['J15'].alignment = Alignment(horizontal='right')#align data to the right
+    ws['V15'].value = auto_value_U394
+    ws['V15'].alignment = Alignment(horizontal='right')
+    ws['Y15'].value = auto_value_D424
+    ws['Y15'].alignment = Alignment(horizontal='right')
+    ws['AB15'].value = auto_value_D423
+    ws['AB15'].alignment = Alignment(horizontal='right')
 
 
 
@@ -318,7 +338,7 @@ df.to_excel(output_excel_file,index=False)
 print(f"PDF '{pdf_file}' converted to Excel '{output_excel_file}' successfully")
 
 
-target_time = time(8,1)  # Set the target time to anytime
+target_time = time(2,1)  # Set the target time to anytime
 wb = load_workbook('PeV Weekly Summary Report 2023.xlsx') #loading a workbook
 sheet1 = wb['sheet1']
 
