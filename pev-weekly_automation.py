@@ -124,6 +124,8 @@ def create_new_sheet(wb):
     for row in ws.iter_rows(min_row=5, max_row=15, min_col=2, max_col=2):
         for cell in row:
             cell.value = None
+    
+
     #copy data from auto.xlsx to the current sheet
     # Open the auto.xlsx file and get the value from cell D62
     auto_wb = load_workbook('auto.xlsx')
@@ -154,7 +156,7 @@ def create_new_sheet(wb):
     auto_value_D133 = auto_sheet['D133'].value
     auto_value_D132 = auto_sheet['D132'].value
    
-   #Copy for Lyndridge Mall
+    #Copy for Lyndridge Mall
     auto_value_D160 = auto_sheet['D160'].value
     auto_value_A172 = auto_sheet['A172'].value
     integer_part_A172 = int(re.search(r'\d+', auto_value_A172).group()) #filter the invoice of hartenbros so it copies only the int value on cell A25
@@ -207,7 +209,7 @@ def create_new_sheet(wb):
 
 
 
-
+    #This section is for pasting current data
     # Paste the data from cell D62 into cell B5 in the new sheet
     ws['B5'].value = auto_value_D13
     ws['B5'].alignment = Alignment(horizontal='right') #align data to the right
@@ -315,6 +317,52 @@ def create_new_sheet(wb):
 
 
 
+    #copy data from auto1.xlsx to the current sheet
+    # Open the auto.xlsx file and get the value from cell D62
+    auto_wb = load_workbook('auto1.xlsx')
+    auto_sheet = auto_wb.active  # data is in the active sheet of auto.xlsx
+    
+    #copy for Hartenbros
+    auto_value_D13 = auto_sheet['D13'].value
+    #Copy for Eagles Landing
+    auto_value_G63 = auto_sheet['G63'].value
+    #Copy for Irene Village
+    auto_value_D111 = auto_sheet['D111'].value
+    #copy for Lynwood
+    auto_value_D160 = auto_sheet['D160'].value
+    #copy for Melville
+    auto_value_D208 = auto_sheet['D208'].value
+    #copy for cambridge
+    auto_value_D256 = auto_sheet['D256'].value
+    #Copy for queenswood
+    auto_value_D305 = auto_sheet['D305'].value
+    #copy for waterkloof
+    auto_value_D353 = auto_sheet['D353'].value
+    #copy for stellenbosch
+    auto_value_D401 = auto_sheet['D401'].value
+    
+    ws['F5'].value = auto_value_D13 #Hartenbros
+    ws['F5'].alignment = Alignment(horizontal='right')
+    ws['F6'].value = auto_value_G63 #Eagles Landing
+    ws['F6'].alignment = Alignment(horizontal='right')#align data to the right
+    ws['F7'].value = auto_value_D111 #Irene
+    ws['F7'].alignment = Alignment(horizontal='right')
+    ws['F9'].value = auto_value_D160 #Lynwood
+    ws['F9'].alignment = Alignment(horizontal='right')
+    ws['F11'].value = auto_value_D208 #Melville
+    ws['F11'].alignment = Alignment(horizontal='right')
+    ws['F12'].value = auto_value_D256 #Cambridge
+    ws['F12'].alignment = Alignment(horizontal='right')#align data to the right
+    ws['F13'].value = auto_value_D305 #Queenswood
+    ws['F13'].alignment = Alignment(horizontal='right')
+    ws['F14'].value = auto_value_D353 #Waterkloof
+    ws['F14'].alignment = Alignment(horizontal='right')
+    ws['F15'].value = auto_value_D401 #Stellenbosch
+    ws['F15'].alignment = Alignment(horizontal='right')
+
+
+
+
     auto_wb.close()  # Close the auto.xlsx workbook
 
 
@@ -322,8 +370,11 @@ def create_new_sheet(wb):
 
     wb.save("PeV Weekly Summary Report 2023.xlsx")
 
+#current data
 #this section we are converting pdf to excel(extended program)
 #the data will be stored on auto.xlsx worksheet
+#This section is for current data 
+#we are Converting sample.pdf to auto.xlsx
 pdf_file = "sample.pdf"
 output_excel_file = "auto.xlsx"
 
@@ -339,6 +390,50 @@ df.to_excel(output_excel_file,index=False)
 
 print(f"PDF '{pdf_file}' converted to Excel '{output_excel_file}' successfully")
 
+
+#month to date data
+#this section we are converting pdf to excel(extended program)
+#the data will be stored on auto1.xlsx worksheet
+#This section is for current data
+#we are Converting sample1.pdf to auto1.xlsx
+pdf_file = "sample1.pdf"
+output_excel_file = "auto1.xlsx"
+
+
+#Read PDF and convert to excel
+tables =tabula.read_pdf(pdf_file, pages="all", multiple_tables=True)
+
+#combine all tables into a single DataFrame (if multiple tables are present)
+df = pd.concat(tables, ignore_index=True)
+
+#save the DataFrame to Excel
+df.to_excel(output_excel_file,index=False)
+
+print(f"PDF '{pdf_file}' converted to Excel '{output_excel_file}' successfully")
+
+target_time = time(2,1)  # Set the target time to anytime
+wb = load_workbook('PeV Weekly Summary Report 2023.xlsx') #loading a workbook
+sheet1 = wb['sheet1']
+
+#last year data
+#this section we are converting pdf to excel(extended program)
+#the data will be stored on auto1.xlsx worksheet
+#This section is for current data
+#we are Converting sample2.pdf to auto2.xlsx
+pdf_file = "sample2.pdf"
+output_excel_file = "auto2.xlsx"
+
+
+#Read PDF and convert to excel
+tables =tabula.read_pdf(pdf_file, pages="all", multiple_tables=True)
+
+#combine all tables into a single DataFrame (if multiple tables are present)
+df = pd.concat(tables, ignore_index=True)
+
+#save the DataFrame to Excel
+df.to_excel(output_excel_file,index=False)
+
+print(f"PDF '{pdf_file}' converted to Excel '{output_excel_file}' successfully")
 
 target_time = time(2,1)  # Set the target time to anytime
 wb = load_workbook('PeV Weekly Summary Report 2023.xlsx') #loading a workbook
